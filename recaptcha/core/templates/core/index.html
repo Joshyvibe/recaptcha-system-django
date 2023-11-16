@@ -1,0 +1,49 @@
+
+
+{% extends 'core/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    <div class="max-w-2xl mx-auto flex flex-wrap p-6">
+        <div class="w-full px-8 mt-8 bg-gray-700 p-6 rounded-xl">
+            
+            <h2 class="text-center text-blue-500 md:text-4xl md:text-5xl lg:text-5xl xl:text-5xl my-2 sm:my-4 md:my-6 lg:my-8 xl:my-10 font-semibold">Newsletter</h2>
+
+
+            <form method="post" action="" class="space-y-3">
+                {% csrf_token %}
+
+                <div>
+                    <label class="sm:text-2xl md:text-3xl lg:text-xl xl:text-xl mx-2 sm:mx-4 md:mx-6 lg:mx-8 xl:mx-10 my-2 sm:my-4 md:my-6 lg:my-8 xl:my-10 text-white rounded-xl">Stay up to date with our latest news and services.</label>
+                    <input type="text" name="email" class="w-9/12 mt-6 py-4 px-6 bg-white rounded-xl">
+                    <div>
+                        <button class="py-4 px-6 rounded-xl text-white bg-blue-500 hover:bg-blue-900 relative lg:-right-96 sm:-right-72 lg:ml-14 bottom-14 sm:ml-0">Subscribe</button>
+                    </div>
+              
+
+                    {% if form.errors %}
+                        {% for field in form %}
+                            {% for error in field.errors %}
+
+                                <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                                    <p>{{ error|escape }}</p>
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+
+                        {% for error in form.non_field_errors %}
+                            <div class="p-6 bg-red-200 text-red-800 rounded-xl">
+                                <p>{{ error|escape }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

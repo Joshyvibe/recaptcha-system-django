@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>{% block title %}{% endblock %} | Recaptcha Website</title>
+    </head>
+
+    <body>
+        <nav class="border-b bg-gray-600 border-gray-300">
+            <div class="max-w-6xl mx-auto py-2 bg-gray-600 px-6 xl:px-0 flex items-center justify-between">
+                <div class="menu-left flex items-center space-x-6">
+                    <a href="{% url 'index' %}" class="py-4 text-lg text-white font-semibold">reCAPTCHA</a>
+
+                    <ul class="flex items-center space-x-4">
+                        {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'logout' %}" class="hover:bg-green-600  text-white px-2 py-2 rounded-xl">Logout</a></li>
+                        {% else %}
+                            <li><a href="{% url 'login' %}" class="hover:bg-green-600 text-white  px-2 py-2 rounded-xl">Login</a></li>
+                            <li><a href="{% url 'signup' %}" class="hover:bg-green-600 text-white  px-2 py-2 rounded-xl">Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+
+        <main class="bg-blue-100">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer class="bg-gray-600">
+            <div class="max-w-6xl mx-auto py-10 px-6 xl:px-0 md:flex justify-between">
+                <div class="footer-left mb-12 md:mb-0">
+                    <h2 class="mb-5 uppercase text-lg text-white">About us</h2>
+
+                    <p class="text-white">Lorem ipsum bla bla bla..</p>
+                </div>
+
+                <div class="footer-right">
+                    <h2 class="mb-5 uppercase text-lg text-white">Social links</h2>
+
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white hover:text-green-600">Facebook</a></li>
+                        <li><a href="#" class="text-white hover:text-green-600">Twitter</a></li>
+                        <li><a href="#" class="text-white hover:text-green-600">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://unpkg.com/hyperscript@2.2.0/dist/hyperscript.js"></script>
+
+        
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
